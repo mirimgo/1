@@ -71,6 +71,15 @@ Docker version 29.9.3, build 5457199
 
 ## 4. 터미널 기본 명령어 실습
 ### 4-1. 현재 위치 및 파일 목록 확인
+'''현재 위치 및 파일 목록 확인
+pwd
+/Users/mirim
+ls
+Applications			Downloads			Parallels
+Applications (Parallels)	Library				Pictures
+Desktop				Movies				Public
+Documents			Music
+'''
 ### 4-2. 디렉토리 및 파일 생성
 ### 4-3. 파일 복사, 이동, 이름 변경, 삭제
 ### 4-4. 파일 내용 확인
