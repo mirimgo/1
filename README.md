@@ -25,16 +25,21 @@ BuildVersion:		25F84
 echo $SHELL
 /bin/zsh
 ```
+- OS: macOS 26.5.2
+- Terminal: macOS Terminal
+- Shell: Zsh (/bin/zsh)
 ### 2-2. Git 버전
 ```Git 버전
 git --version
 git version 2.50.1 (Apple Git-155)
 ```
+- Git 버전: 2.50.1
 ### 2-3. Docker 버전
 ```Docker 버전
 docker --version
 Docker version 29.9.3, build 5457199
 ```
+- Docker 버전: 29.9.3
 
 ## 3. 수행 체크리스트
 - [ ] GitHub 저장소 생성
