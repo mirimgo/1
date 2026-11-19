@@ -95,7 +95,8 @@ mkdir codyssey-practice
 cd codyssey-practice
 ```
 - mkdir 명령어로 codyssey-practice라는 디렉토리를 만들고, cd 명령어로 생성한 디렉토리로 이동했습니다.
-```touch memo.txt
+```
+touch memo.txt
 ls
 memo.txt
 ```
