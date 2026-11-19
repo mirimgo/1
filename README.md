@@ -93,11 +93,12 @@ Documents			Music
 ```디렉토리 및 파일 생성
 mkdir codyssey-practice
 cd codyssey-practice
-touch memo.txt
+```
+- mkdir 명령어로 codyssey-practice라는 디렉토리를 만들고, cd 명령어로 생성한 디렉토리로 이동했습니다.
+```touch memo.txt
 ls
 memo.txt
 ```
-- midkr 명령어로 codyssey-practice라는 디렉토리를 만들고, cd 명령어로 생성한 디렉토리로 이동했습니다.
 - touch 명령어로 memo.txt 파일을 생성하였습니다.
 - ls 명령어를 통해 파일이 정상적으로 생성되었음을 확인했습니다.
 ### 4-3. 파일 복사, 이동, 이름 변경, 삭제
