@@ -22,6 +22,7 @@ ProductName:		macOS
 ProductVersion:		26.5.2
 BuildVersion:		25F84
 mirim@Mirimui-MacBookAir ~ % echo $SHELL
+/bin/zsh
 ```
 - 운영체제: macOS 26.5.2
 - 터미널: macOS Terminal
