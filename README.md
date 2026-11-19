@@ -85,7 +85,19 @@ Applications (Parallels)	Library				Pictures
 Desktop				Movies				Public
 Documents			Music
 ```
+- pwd 명령어를 통해 현재 작업 디렉토리의 위치가 /Users/Mirim임을 확인했습니다.
+- ls 명령어를 통해 현재 디렉토리 내에 존재하는 파일 및 폴더 목록을 확인했습니다.
 ### 4-2. 디렉토리 및 파일 생성
+```디렉토리 및 파일 생성
+mkdir codyssey-practice
+cd codyssey-practice
+touch memo.txt
+ls
+memo.txt
+```
+- midkr 명령어로 codyssey-practice라는 디렉토리를 만들고, cd 명령어로 생성한 디렉토리로 이동했습니다.
+- touch 명령어로 memo.txt 파일을 생성하였습니다.
+- ls 명령어를 통해 파일이 정상적으로 생성되었음을 확인했습니다.
 ### 4-3. 파일 복사, 이동, 이름 변경, 삭제
 ### 4-4. 파일 내용 확인
 ### 4-5. 실행 결과 및 배운 점
