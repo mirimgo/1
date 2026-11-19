@@ -16,6 +16,13 @@
 
 ## 2. 실행 환경
 ### 2-1. 운영체제 및 터미널
+'''운영체제 및 터미널
+mirim@Mirimui-MacBookAir ~ % sw_vers
+ProductName:		macOS
+ProductVersion:		26.5.2
+BuildVersion:		25F84
+mirim@Mirimui-MacBookAir ~ % echo $SHELL
+'''
 - 운영체제: macOS 26.5.2
 - 터미널: macOS Terminal
 - 쉘: zsh
