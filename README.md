@@ -208,11 +208,67 @@ drwx------  2 mirim  staff  64 11월 19 22:36 backup
 
 ## 6. Docker 설치 및 기본 점검
 ### 6-1. Docker 버전 확인
+```
+docker --version
+Docker version 29.9.3, build 5457199
+```
+- docker --version 명령어로 docker 설치 여부와 버전을 확인하였습니다.
 ### 6-2. Docker 실행 상태 확인
-### 6-3. Docker 이미지 목록 확인
-### 6-4. 컨테이너 실행 및 관리
-### 6-5. 로그 및 리소스 확인
+```
+docker info
+Client:
+ Version:    29.9.3
+ Context:    desktop-linux
+ Debug Mode: false
 
+Server:
+ Containers: 0
+  Running: 0
+  Paused: 0
+  Stopped: 0
+ Images: 0
+ Server Version: 29.9.3
+```
+- docker info 명령어를 사용하여 Docker의 전반적인 실행 상태를 확인하였습니다. Client와 Server 정보가 정상적으로 출력되었고, Server의 버전 정보를 통해 Docker Engine이 정상적으로 연결되어 작동하고 있음도 확인했습니다.
+- 전체 출력 결과 중 실습과 직접적인 관련이 없는 세부 정보는 제외했으며, 해당 정보는 스크린샷에서 확인하실 수 있습니다.
+### 6-3. Docker 이미지 목록 확인
+```
+docker images
+IMAGE   ID   DISK USAGE   CONTENT SIZE   EXTRA
+```
+- docker images 명령어로 로컬에 저장된 Docker 이미지 목록을 확인하였습니다. 이미지 목록은 비어있으며 현재 다운로드하거나 생성한 Docker 이미지가 없음을 확인할 수 있습니다.
+### 6-4. 컨테이너 실행 및 관리
+```
+docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+```
+- docker ps 명령어를 사용하여 현재 실행중인 컨테이너 목록을 확인하였습니다. 현재 실행 중인 컨테이너는 없습니다.
+```
+docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+```
+- docker ps -a 명령어를 사용하여 실행 중인 컨테이너와 중지된 컨테이너를 포함한 전체 목록을 확인하였습니다. 현재 생성된 컨테이너, 중지된 컨테이너 모두 없습니다.
+### 6-5. 로그 및 리소스 확인
+```
+docker logs
+docker: 'docker logs' requires 1 argument
+Usage:  docker logs [OPTIONS] CONTAINER
+```
+- docker logs 명령어로 컨테이너 로그 확인을 시도했습니다. 해당 명령어는 로그를 확인할 컨테이너 ID 또는 이름이 필요하며, 현재 생성된 컨테이너가 없어 로그를 조회할 수 없음을 확인했습니다.
+```
+docker stats
+CONTAINER ID   NAME      CPU %     MEM USAGE / LIMIT   MEM %     NET I/O   BLOCK I/O   PIDS
+```
+- docker stats 명령어로 실행 중인 컨테이너의 리소스 사용량을 확인하였습니다. 현재 실행 중인 컨테이너가 없어 리소스 사용량이 표시되지 않음을 확인했습니다.
+```
+docker system df
+TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE
+Images          0         0         0B        0B
+Containers      0         0         0B        0B
+Local Volumes   0         0         0B        0B
+Build Cache     0         0         0B        0B
+```
+- docker system df 명령어를 사용하여 Docker의 전체 디스크 사용량을 확인했습니다. 모든 항목의 사용량이 0으로 표시되었으며, 현재 저장된 이미지나 컨테이너 등이 없음을 확인하였습니다.
 ## 7. 컨테이너 실행 실습
 ### 7-1. hello-world 실행
 ### 7-2. Ubuntu 컨테이너 실행
