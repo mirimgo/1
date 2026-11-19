@@ -76,16 +76,18 @@ Docker version 29.9.3, build 5457199
 
 ## 4. 터미널 기본 명령어 실습
 ### 4-1. 현재 위치 및 파일 목록 확인
-```현재 위치 및 파일 목록 확인
+```현재 위치 확인
 pwd
 /Users/mirim
+```
+- pwd 명령어를 통해 현재 작업 디렉토리의 위치가 /Users/Mirim임을 확인했습니다.
+```파일 목록 확인
 ls
 Applications			Downloads			Parallels
 Applications (Parallels)	Library				Pictures
 Desktop				Movies				Public
 Documents			Music
 ```
-- pwd 명령어를 통해 현재 작업 디렉토리의 위치가 /Users/Mirim임을 확인했습니다.
 - ls 명령어를 통해 현재 디렉토리 내에 존재하는 파일 및 폴더 목록을 확인했습니다.
 ### 4-2. 디렉토리 및 파일 생성
 ```디렉토리 및 파일 생성
