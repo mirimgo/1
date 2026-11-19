@@ -20,7 +20,9 @@
 - 터미널: macOS Terminal
 - 쉘: zsh
 ### 2-2. Git 버전
+* Git version 2.50.1 (Apple Git-155)
 ### 2-3. Docker 버전
+* Docker version 29.9.3 (build 5457199)
 
 ## 3. 수행 체크리스트
 
