@@ -16,12 +16,11 @@
 
 ## 2. 실행 환경
 ### 2-1. 운영체제 및 터미널
-```운영체제 및 터미널
+```
 sw_vers
 ProductName:		macOS
 ProductVersion:		26.5.2
 BuildVersion:		25F84
-
 echo $SHELL
 /bin/zsh
 ```
@@ -29,13 +28,13 @@ echo $SHELL
 - Terminal: macOS Terminal
 - Shell: Zsh (/bin/zsh)
 ### 2-2. Git 버전
-```Git 버전
+```
 git --version
 git version 2.50.1 (Apple Git-155)
 ```
 - Git 버전: 2.50.1
 ### 2-3. Docker 버전
-```Docker 버전
+```
 docker --version
 Docker version 29.9.3, build 5457199
 ```
@@ -81,7 +80,7 @@ pwd
 /Users/mirim
 ```
 - pwd 명령어를 통해 현재 작업 디렉토리의 위치가 /Users/Mirim임을 확인했습니다.
-```파일 목록 확인
+```
 ls
 Applications			Downloads			Parallels
 Applications (Parallels)	Library				Pictures
@@ -90,7 +89,7 @@ Documents			Music
 ```
 - ls 명령어를 통해 현재 디렉토리 내에 존재하는 파일 및 폴더 목록을 확인했습니다.
 ### 4-2. 디렉토리 및 파일 생성
-```디렉토리 및 파일 생성
+```
 mkdir codyssey-practice
 cd codyssey-practice
 ```
@@ -102,7 +101,39 @@ memo.txt
 ```
 - touch 명령어로 memo.txt 파일을 생성하였습니다.
 - ls 명령어를 통해 파일이 정상적으로 생성되었음을 확인했습니다.
-### 4-3. 파일 복사, 이동, 이름 변경, 삭제
+### 4-3. 파일 복사, 이름 변경, 이동, 삭제
+```
+cp memo.txt memo-copy.txt
+ls
+memo-copy.txt	memo.txt
+```
+- cp 명령어를 사용하여 memo.txt 파일을 memo-copy.txt라는 이름으로 복사했습니다.
+- ls 명령어를 통해 원본 파일과 복사된 파일이 모두 존재하는 것을 확인했습니다.
+```
+mv memo-copy.txt new-memo.txt
+ls  
+memo.txt	new-memo.txt
+```
+- mv 명령어를 사용하여 memo-copy.txt 파일의 이름을 new-memo.txt로 변경했습니다.
+- ls 명령어를 통해 파일 이름이 정상적으로 변경된 것을 확인했습니다.
+```
+mkdir backup
+mv new-memo.txt backup/
+ls
+backup		memo.txt
+ls backup
+new-memo.txt
+```
+- 먼저 mkdir 명령어로 backup 디렉토리를 생성했습니다.
+- mv 명령어를 사용하여 new-memo.txt 파일을 backup 디렉토리로 이동했습니다.
+- ls 명령어를 통해 파일이 backup 디렉토리로 이동하고 기존 디렉토리에서 사라진 것을 확인했습니다.
+```
+rm backup/new-memo.txt
+ls backup
+
+```
+- rm 명령어를 사용하여 backup 디렉토리 안에 있는 new-memo.txt 파일을 삭제했습니다.
+- ls 명령어를 통해 해당 디렉토리 내 파일이 삭제된 것을 확인했습니다.
 ### 4-4. 파일 내용 확인
 ### 4-5. 실행 결과 및 배운 점
 
