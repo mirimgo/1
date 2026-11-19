@@ -21,6 +21,7 @@ sw_vers
 ProductName:		macOS
 ProductVersion:		26.5.2
 BuildVersion:		25F84
+
 echo $SHELL
 /bin/zsh
 ```
