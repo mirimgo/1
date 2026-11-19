@@ -25,13 +25,16 @@ BuildVersion:		25F84
 echo $SHELL
 /bin/zsh
 ```
-- 운영체제: macOS 26.5.2
-- 터미널: macOS Terminal
-- 쉘: zsh
 ### 2-2. Git 버전
-* Git version 2.50.1 (Apple Git-155)
+'''Git 버전
+git --version
+git version 2.50.1 (Apple Git-155)
+'''
 ### 2-3. Docker 버전
-* Docker version 29.9.3 (build 5457199)
+```Docker 버전
+docker --version
+Docker version 29.9.3, build 5457199
+'''
 
 ## 3. 수행 체크리스트
 
