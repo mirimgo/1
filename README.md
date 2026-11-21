@@ -282,7 +282,7 @@ Unable to find image 'hello-world:latest' locally
 - 현재 컴퓨터에 hello-world 이미지가 없어 Docker가 이미지를 다운로드하기 시작했습니다.
 ```
 latest: Pulling from library/hello-world
-'''
+```
 - Docker Hub의 hello-world 이미지 중 latest(이미지의 버전을 구분하는 태그)가 지정된 이미지를 가져오기 시작했습니다.
 ```
 58dee6a49ef1: Pull complete 
