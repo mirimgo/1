@@ -47,7 +47,7 @@ Docker version 29.9.3, build 5457199
 
 - [x] 파일 및 디렉토리 권한 확인/변경
 
-- [ ] Docker 설치 및 실행 확인
+- [x] Docker 설치 및 실행 확인
 
 - [ ] Docker 이미지 다운로드 및 확인
 
@@ -272,6 +272,28 @@ Build Cache     0         0         0B        0B
 
 ## 7. 컨테이너 실행 실습
 ### 7-1. hello-world 실행
+```
+docker run hello-world
+```
+- docker run hello-world 명령어를 실행하여 hello-world 이미지를 기반으로 컨테이너를 생성하고 실행하는 실습입니다.
+```
+Unable to find image 'hello-world:latest' locally
+```
+- 현재 컴퓨터에 hello-world 이미지가 없어 Docker가 이미지를 다운로드하기 시작했습니다.
+```
+latest: Pulling from library/hello-world
+58dee6a49ef1: Pull complete 
+c3bdf82c34d1: Download complete
+
+Digest: sha256:1e4c05b897a751332ce85c7e9449da2d93514ea2dea6dbb0e2753c9e949b2bfa
+Status: Downloaded newer image for hello-world:latest
+```
+- Docker Hub에서 hello-world 이미지를 다운로드했습니다. Pull Complete는 이미지 다운로드가 완료되었다는 의미입니다.
+```
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+```
+- Hello from Docker! 메시지가 출력되면서 컨테이너가 정상적으로 실행되었음을 확인했습니다.
 ### 7-2. Ubuntu 컨테이너 실행
 ### 7-3. 컨테이너 종료 및 유지 방식 비교
 
