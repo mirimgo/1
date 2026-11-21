@@ -299,7 +299,7 @@ Hello from Docker!
 This message shows that your installation appears to be working correctly.
 ```
 - Hello from Docker! 메시지가 출력되면서 컨테이너가 정상적으로 실행되었음을 확인했습니다.
-### 7-2. Ubuntu 컨테이너 실행
+### 7-2. Ubuntu 컨테이너 실행 후 간단 명령 수행
 ```
 docker run -it ubuntu bash
 ```
@@ -332,8 +332,47 @@ root@e7bd23a814bb:/#
 | `/` | 현재 위치가 최상위 디렉토리임을 의미 |
 | `#` | root 권한으로 명령어w 입력할 수 있다는 표시 |
 - Ubuntu 컨테이너 내부로 정상적으로 진입했음을 확인하였습니다.
+```
+ls
+bin   dev  home  media  opt   root  sbin  sys  usr
+boot  etc  lib   mnt    proc  run   srv   tmp  var
+```
+- ls 명령어를 통해 Ubuntu 컨테이너의 최상위 디렉토리(`/`)에 있는 기본 폴더 목록을 확인하였습니다.
+```
+echo "Hello Ubuntu!"
+Hello Ubuntu!
+```
+- echo 명령어로 입력한 문자열이 터미널에 정상적으로 출력되는지 확인하였습니다.
 ### 7-3. 컨테이너 종료 및 유지 방식 비교
-
+```
+exit
+exit
+```
+- exit 명령어로 Ubuntu 컨테이너 내부에서 빠져나왔습니다. 실행 중이던 bash 프로세스가 종료되면서 컨테이너도 종료되었습니다.
+```
+docker ps -a
+CONTAINER ID   IMAGE    COMMAND   STATUS
+e7bd23a814bb   ubuntu   "bash"    Exited (0)
+```
+- Exited (0) 상태를 통해 Ubuntu 컨테이너가 오류 없이 정상적으로 종료되었음을 확인했습니다.
+```
+docker run -d --name ubuntu-keep ubuntu sleep infinity
+c08eca8c6aea6cb6afd1da6408b260da6f13f947b8b18676ff6ff25317ccdbf5
+docker ps
+CONTAINER ID   IMAGE     COMMAND            CREATED         STATUS         PORTS     NAMES
+c08eca8c6aea   ubuntu    "sleep infinity"   7 seconds ago   Up 6 seconds             ubuntu-keep
+```
+- 유지 실습을 위해 새 컨테이너를 만들고, --name 옵션을 사용하여 이름을 ubuntu-keep으로 지정했습니다.
+- sleep infinity 명령어를 통해 컨테이너 내부에서 프로세스가 계속 실행되도록 하여 컨테이너가 종료되지 않고 유지되도록 했습니다.
+```
+docker exec -it ubuntu-keep bash
+exit
+docker ps
+CONTAINER ID   IMAGE     COMMAND            STATUS         NAMES
+c08eca8c6aea   ubuntu    "sleep infinity"   Up 4 minutes   ubuntu-keep
+```
+- docker exec 명령어를 사용하여 실행 중인 ubuntu-keep 컨테이너 내부에 진입한 후, exit으로 빠져나왔습니다.
+- docker ps로 상태를 다시 확인한 결과, 컨테이너가 여전히 Up 상태로 유지되는 것을 확인했습니다.
 ## 8. Dockerfile 작성 및 커스텀 이미지 제작
 ### 8-1. 프로젝트 구조
 ### 8-2. Dockerfile 내용
