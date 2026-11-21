@@ -282,19 +282,56 @@ Unable to find image 'hello-world:latest' locally
 - 현재 컴퓨터에 hello-world 이미지가 없어 Docker가 이미지를 다운로드하기 시작했습니다.
 ```
 latest: Pulling from library/hello-world
+'''
+- Docker Hub의 hello-world 이미지 중 latest(이미지의 버전을 구분하는 태그)가 지정된 이미지를 가져오기 시작했습니다.
+```
 58dee6a49ef1: Pull complete 
 c3bdf82c34d1: Download complete
-
+```
+- 이미지를 구성하는 데이터들이 정상적으로 다운로드되었습니다.
+```
 Digest: sha256:1e4c05b897a751332ce85c7e9449da2d93514ea2dea6dbb0e2753c9e949b2bfa
 Status: Downloaded newer image for hello-world:latest
 ```
-- Docker Hub에서 hello-world 이미지를 다운로드했습니다. Pull Complete는 이미지 다운로드가 완료되었다는 의미입니다.
+- Status를 통해 hello-world 이미지 다운로드가 완료되었음을 확인하였습니다.
 ```
 Hello from Docker!
 This message shows that your installation appears to be working correctly.
 ```
 - Hello from Docker! 메시지가 출력되면서 컨테이너가 정상적으로 실행되었음을 확인했습니다.
 ### 7-2. Ubuntu 컨테이너 실행
+```
+docker run -it ubuntu bash
+```
+- Ubuntu 이미지를 기반으로 새로운 컨테이너를 만들고 실행하는 실습입니다.
+```
+Unable to find image 'ubuntu:latest' locally
+```
+- 현재 컴퓨터에 Ubuntu 이미지가 없어 Docker가 이미지를 다운로드하기 시작했습니다.
+```
+latest: Pulling from library/ubuntu
+```
+- Docker Hub에서 Ubuntu 이미지를 가져오고 있습니다.
+```
+cedc468d06b2: Pull complete 
+7f2c2ca81066: Pull complete 
+9d297c90b98f: Download complete
+```
+- Ubuntu 이미지를 구성하는 데이터들을 다운로드하는 중입니다.
+```
+Status: Downloaded newer image for ubuntu:latest
+```
+- Ubuntu 이미지 다운로드가 완료되었습니다.
+```
+root@e7bd23a814bb:/#
+```
+| 구성 요소 | 의미 |
+|-----------|------|
+| `root` | 현재 접속한 사용자의 이름 |
+| `e7bd23a814bb` | 컨테이너 ID의 일부 |
+| `/` | 현재 위치가 최상위 디렉토리임을 의미 |
+| `#` | root 권한으로 명령어w 입력할 수 있다는 표시 |
+- Ubuntu 컨테이너 내부로 정상적으로 진입했음을 확인하였습니다.
 ### 7-3. 컨테이너 종료 및 유지 방식 비교
 
 ## 8. Dockerfile 작성 및 커스텀 이미지 제작
