@@ -375,8 +375,40 @@ c08eca8c6aea   ubuntu    "sleep infinity"   Up 4 minutes   ubuntu-keep
 - docker ps로 상태를 다시 확인한 결과, 컨테이너가 여전히 Up 상태로 유지되는 것을 확인했습니다.
 ## 8. Dockerfile 작성 및 커스텀 이미지 제작
 ### 8-1. 프로젝트 구조
+```
+cd ~/codyssey-practice
+mkdir app
+codyssey-practice % ls -a
+.		..		app		backup		memo.txt
+touch app/index.html
+ls -la app
+total 0
+-rw-r--r--  1 mirim  staff    0 11월 22 18:07 index.html
+```
+- 웹 서버에서 제공할 정적 HTML 파일을 관리하기 위해 기존 디렉토리인 codyssey-practice 안에 app 디렉토리를 생성하고, 해당 디렉토리 내부에 index.html 파일을 생성하였다.
+```
+codyssey-practice/
+│
+├── backup/
+├── memo.txt
+│
+└── app/
+    └── index.html
+```
 ### 8-2. 베이스 이미지 선정
+```
+docker pull nginx:latest
+...
+Status: Downloaded newer image for nginx:latest
+docker.io/library/nginx:latest
+docker images
+IMAGE                ID             DISK USAGE   CONTENT SIZE   EXTRA
+nginx:latest         84f7876d21d1        261MB         65.1MB
+```
+- 커스텀 웹 서버 이미지를 제작하기 위한 베이스 이미지로 NGINX 공식 이미지를 선정하였다.
+- NGINX는 HTML, CSS, JavaScript 등의 정적 콘텐츠를 제공할 수 있는 웹 서버로, 별도의 복잡한 서버 프로그래밍 없이 간단한 웹 서버를 구축할 수 있다는 장점이 있다. 또한 Docker Hub에서 공식 이미지를 제공하므로 기존 이미지를 활용하여 효율적으로 커스텀 이미지를 제작할 수 있다.
 ### 8-3. Dockerfile 및 웹 서버 소스코드 작성
+- 해당 과정 진행 중 발생한 오류는 목차 12 트러블슈팅에 기술하였습니다.
 ### 8-4. 커스텀 이미지 빌드
 ### 8-5. 컨테이너 실행 및 결과 확인
 ### 8-6. 커스텀 내용 및 적용 목적
@@ -402,5 +434,96 @@ c08eca8c6aea   ubuntu    "sleep infinity"   Up 4 minutes   ubuntu-keep
 
 ## 12. 트러블슈팅
 ### 12-1. 문제 상황 1
+
+8-3. Dockerfile 및 웹 서버 소스코드 작성 과정에서 index.html 파일에 다음과 같은 HTML 코드를 작성하고자 하였습니다.
+
+```
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>My Docker Web Server</title>
+</head>
+<body>
+    <h1>Hello, Docker!</h1>
+    <p>This is my first custom web server.</p>
+    <p>Powered by NGINX.</p>
+</body>
+</html>
+```
+
+그러나 cat app/index.html 명령어로 파일 내용을 확인한 결과, 작성한 코드가 아닌 TextEdit의 서식 정보가 포함된 HTML 문서가 아래처럼 출력되었습니다.
+
+```
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="ko"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;My Docker Web Server&lt;/title&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;h1&gt;Hello, Docker!&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;p&gt;This is my first custom web server.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;p&gt;Powered by NGINX.&lt;/p&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
+```
+
+Mac의 기본 텍스트 편집기인 TextEdit이 HTML 코드를 일반 텍스트로 저장하지 않고, 서식 있는 문서 형식으로 저장했기 때문입니다. 이 과정에서 입력한 HTML 코드가 일반 텍스트로 처리되어 별도의 HTML 문서 구조로 변환되었습니다.
+
+해당 문제를 해결하기 위해, 터미널에 다음과 같이 입력했습니다.
+
+```
+cat > app/index.html <<'EOF'
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>My Docker Web Server</title>
+</head>
+<body>
+    <h1>Hello, Docker!</h1>
+    <p>This is my first custom web server.</p>
+    <p>Powered by NGINX.</p>
+</body>
+</html>
+EOF
+```
+
+- cat > app/index.html: 지정한 파일에 새로운 내용을 작성하며, 기존 파일의 내용은 덮어씁니다.
+- <<'EOF': Here Document 문법으로, 지정한 종료 문자열이 나올 때까지 입력한 내용을 전달합니다.
+- EOF: 입력이 끝났음을 나타내는 종료 문자열입니다.
+
+```
+cat app/index.html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>My Docker Web Server</title>
+</head>
+<body>
+    <h1>Hello, Docker!</h1>
+    <p>This is my first custom web server.</p>
+    <p>Powered by NGINX.</p>
+</body>
+</html>
+```
+- 다시 cat app/index.html로 확인한 결과, HTML 소스 코드가 의도한 형태로 정상 저장되었음을 확인하였습니다.
 ### 12-2. 문제 상황 2
 
