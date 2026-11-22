@@ -505,9 +505,11 @@ cat > app/index.html <<'EOF'
 EOF
 ```
 
-- cat > app/index.html: 지정한 파일에 새로운 내용을 작성하며, 기존 파일의 내용은 덮어씁니다.
-- <<'EOF': Here Document 문법으로, 지정한 종료 문자열이 나올 때까지 입력한 내용을 전달합니다.
-- EOF: 입력이 끝났음을 나타내는 종료 문자열입니다.
+cat > app/index.html: 지정한 파일에 새로운 내용을 작성하며, 기존 파일의 내용은 덮어씁니다.
+
+<<'EOF': Here Document 문법으로, 지정한 종료 문자열이 나올 때까지 입력한 내용을 전달합니다.
+
+EOF: 입력이 끝났음을 나타내는 종료 문자열입니다.
 
 ```
 cat app/index.html
@@ -524,6 +526,8 @@ cat app/index.html
 </body>
 </html>
 ```
-- 다시 cat app/index.html로 확인한 결과, HTML 소스 코드가 의도한 형태로 정상 저장되었음을 확인하였습니다.
+
+다시 cat app/index.html로 확인한 결과, HTML 소스 코드가 의도한 형태로 정상 저장되었음을 확인하였습니다.
+
 ### 12-2. 문제 상황 2
 
