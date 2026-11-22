@@ -408,10 +408,52 @@ nginx:latest         84f7876d21d1        261MB         65.1MB
 - 커스텀 웹 서버 이미지를 제작하기 위한 베이스 이미지로 NGINX 공식 이미지를 선정하였다.
 - NGINX는 HTML, CSS, JavaScript 등의 정적 콘텐츠를 제공할 수 있는 웹 서버로, 별도의 복잡한 서버 프로그래밍 없이 간단한 웹 서버를 구축할 수 있다는 장점이 있다. 또한 Docker Hub에서 공식 이미지를 제공하므로 기존 이미지를 활용하여 효율적으로 커스텀 이미지를 제작할 수 있다.
 ### 8-3. Dockerfile 및 웹 서버 소스코드 작성
-- 해당 과정 진행 중 발생한 오류는 목차 12 트러블슈팅에 기술하였습니다.
+```
+cat > app/index.html <<'EOF'
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>My Docker Web Server</title>
+</head>
+<body>
+    <h1>Hello, Docker!</h1>
+    <p>This is my first custom web server.</p>
+    <p>Powered by NGINX.</p>
+</body>
+</html>
+EOF
+```
+- index.html 안에 NGINX 웹 서버에서 표시할 HTML 소스코드를 입력했습니다.
+- 기존에 open -e app/index.html 명령어로 텍스트 편집기를 열어 해당 내용을 입력할 계획이었으나 문제가 발생했습니다. 해당 문제는 목차 12 트러블슈팅에 기술하였습니다.
+```
+touch Dockerfile
+open -e Dockerfile
+```
+- touch 명령어로 Dockerfile 생성 후, Dockerfile을 텍스트 편집기로 열어 아래 코드를 입력하였습니다.
+```
+FROM nginx:latest
+COPY app/index.html /usr/share/nginx/html/index.html
+EXPOSE 80
+```
+- FROM nginx:latest : NGINX 최신 버전을 기반 이미지로 지정하였습니다.
+- COPY : 직접 작성한 HTML 파일을 NGINX의 기본 웹 페이지 저장 경로(/usr/share/nginx/html/index.html)에 복사하도록 설정하였습니다. 이를 통해 NGINX의 기존 기본 환영 페이지를 직접 제작한 웹 페이지로 교체하여 정적 콘텐츠를 커스터마이징하였습니다.
+- EXPOSE 80 : 컨테이너에서 사용할 포트 번호를 80번으로 지정하였습니다.
 ### 8-4. 커스텀 이미지 빌드
+```
+docker build -t my-web-server .
+[+] Building 1.3s (7/7) FINISHED   
+```
+- 작성한 Dockerfile을 기반으로 my-web-server라는 이름의 Docker 이미지를 생성하였습니다.
+- 빌드 과정이 오류 없이 완료되어 커스텀 이미지 생성에 성공하였습니다.
 ### 8-5. 컨테이너 실행 및 결과 확인
-### 8-6. 커스텀 내용 및 적용 목적
+```
+docker run -d -p 8080:80 --name my-web-container my-web-server
+```
+- 앞서 생성한 my-web-server 이미지를 이용하여 my-web-container라는 이름의 컨테이너를 실행하였습니다.
+- -p 8080:80 옵션을 사용하여 호스트의 8080번 포트와 컨테이너의 80번 포트를 연결하였습니다.
+- 웹 브라우저에서 http://localhost:8080에 접속한 결과, 직접 작성한 HTML 콘텐츠인 Hello, Docker!, This is my first custom web server., Powered by NGINX.가 화면에 정상적으로 표시되는 것을 확인하였습니다.
+- 이를 통해 커스텀 이미지로 컨테이너를 실행하고, 직접 제작한 정적 콘텐츠가 정상적으로 적용되었음을 확인하였습니다.
 
 ## 9. 포트 매핑 및 웹 서버 접속
 ### 9-1. 포트 매핑 실행 명령어
@@ -426,11 +468,9 @@ nginx:latest         84f7876d21d1        261MB         65.1MB
 ### 10-5. 바인드 마운트와 볼륨의 차이
 
 ## 11. Git 및 GitHub 연동
-### 11-1. Git 사용자 정보 설정
-### 11-2. 기본 브랜치 설정
+### 11-1. Git 사용자 정보 설정 및 기본 브랜치 설정
 ### 11-3. GitHub 저장소 생성 및 연동
 ### 11-4. VSCode GitHub 로그인 및 연동
-### 11-5. Git과 GitHub의 역할 차이
 
 ## 12. 트러블슈팅
 ### 12-1. 문제 상황 1
