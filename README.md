@@ -385,7 +385,7 @@ ls -la app
 total 0
 -rw-r--r--  1 mirim  staff    0 11월 22 18:07 index.html
 ```
-- 웹 서버에서 제공할 정적 HTML 파일을 관리하기 위해 기존 디렉토리인 codyssey-practice 안에 app 디렉토리를 생성하고, 해당 디렉토리 내부에 index.html 파일을 생성하였다.
+- 웹 서버에서 제공할 정적 HTML 파일을 관리하기 위해 기존 디렉토리인 codyssey-practice 안에 app 디렉토리를 생성하고, 해당 디렉토리 내부에 index.html 파일을 생성하였습니다.
 ```
 codyssey-practice/
 │
@@ -405,8 +405,8 @@ docker images
 IMAGE                ID             DISK USAGE   CONTENT SIZE   EXTRA
 nginx:latest         84f7876d21d1        261MB         65.1MB
 ```
-- 커스텀 웹 서버 이미지를 제작하기 위한 베이스 이미지로 NGINX 공식 이미지를 선정하였다.
-- NGINX는 HTML, CSS, JavaScript 등의 정적 콘텐츠를 제공할 수 있는 웹 서버로, 별도의 복잡한 서버 프로그래밍 없이 간단한 웹 서버를 구축할 수 있다는 장점이 있다. 또한 Docker Hub에서 공식 이미지를 제공하므로 기존 이미지를 활용하여 효율적으로 커스텀 이미지를 제작할 수 있다.
+- 커스텀 웹 서버 이미지를 제작하기 위한 베이스 이미지로 NGINX 공식 이미지를 선정하였습니다
+- NGINX는 HTML, CSS, JavaScript 등의 정적 콘텐츠를 제공할 수 있는 웹 서버로, 별도의 복잡한 서버 프로그래밍 없이 간단한 웹 서버를 구축할 수 있다는 장점이 있습니다. 또한 Docker Hub에서 공식 이미지를 제공하므로 기존 이미지를 활용하여 효율적으로 커스텀 이미지를 제작할 수 있습니다.
 ### 8-3. Dockerfile 및 웹 서버 소스코드 작성
 ```
 cat > app/index.html <<'EOF'
@@ -452,7 +452,7 @@ docker run -d -p 8080:80 --name my-web-container my-web-server
 ```
 - 앞서 생성한 my-web-server 이미지를 이용하여 my-web-container라는 이름의 컨테이너를 실행하였습니다.
 - -p 8080:80 옵션을 사용하여 호스트의 8080번 포트와 컨테이너의 80번 포트를 연결하였습니다.
-- 웹 브라우저에서 http://localhost:8080에 접속한 결과, 직접 작성한 HTML 콘텐츠인 Hello, Docker!, This is my first custom web server., Powered by NGINX.가 화면에 정상적으로 표시되는 것을 확인하였습니다.
+- 웹 브라우저에서 http://localhost:8080 에 접속한 결과, 직접 작성한 HTML 콘텐츠인 Hello, Docker!, This is my first custom web server., Powered by NGINX.가 화면에 정상적으로 표시되는 것을 확인하였습니다.
 - 이를 통해 커스텀 이미지로 컨테이너를 실행하고, 직접 제작한 정적 콘텐츠가 정상적으로 적용되었음을 확인하였습니다.
 
 ## 9. 포트 매핑 및 웹 서버 접속
