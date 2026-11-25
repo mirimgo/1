@@ -539,6 +539,20 @@ docker exec volume-container cat /usr/share/nginx/html/index.html
 - 볼륨 (Volume): Docker가 직접 관리하는 별도의 저장 공간을 컨테이너와 연결하는 방식이다.
 ## 10. Git 및 GitHub 연동
 ### 10-1. Git 사용자 정보 설정 및 기본 브랜치 설정
+```
+git config --global user.name "Mirim"
+git config --global user.email "prmrmr10@gmail.com"
+git config --global init.defaultBranch main
+```
+- git config 명령어로 사용자 이름과 이메일 등 기본 정보를 설정하고, 기본 브랜치 이름을 main으로 지정했습니다.
+```
+git config --list
+credential.helper=osxkeychain
+init.defaultbranch=main
+user.name=Mirim
+user.email=prmrmr10@gmail.com
+```
+- git config --list로 설정한 정보들이 제대로 등록된 것을 확인했습니다.
 ### 10-3. GitHub 저장소 생성 및 연동
 ### 10-4. VSCode GitHub 로그인 및 연동
 
