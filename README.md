@@ -462,7 +462,29 @@ docker run -d -p 8080:80 --name my-web-container my-web-server
 
 ## 9. 바인드 마운트 및 Docker 볼륨
 ### 9-1. 바인드 마운트 실행
+```
+codyssey-practice/
+├── app/
+│   └── index.html
+├── backup/
+├── memo.txt
+└── Dockerfile
+```
+- 8번까지 진행했던 디렉토리 파일들의 구조입니다. codyssey-practice에서 다음 명령어를 실행하겠습니다.
+```
+docker run -d -p 8081:80 --name bind-mount-container -v "$(pwd)/app:/usr/share/nginx/html" my-web-server
+```
+- bind-mount-container 라는 이름으로 컨테이너를 생성하였습니다. 호스트 8081과 컨테이너 80번 포트를 연결하였고 백그라운드에서 컨테이너를 실행하였습니다.
+- http://localhost:8081 로 접속 결과 기존에 작성했던 html 화면이 정상적으로 출력되었습니다.(스크린샷 첨부)
 ### 9-2. 호스트 파일 변경 전/후 비교
+```
+nano app/index.html
+
+<h1>Hello, Bind Mount!</h1>
+<p>This content was updated on the host.</p>
+```
+- 기존 호스트 html 파일을 수정하기 위해 nano 명령어로 편집기를 실행 후, 하단 텍스트 두 줄로 기존 텍스트를 교체했습니다.
+- http://localhost:8081 로 돌아가 새로고침 후, 파일이 정상적으로 변경되었음을 확인하였습니다. 해당 과정 수행 중 발생한 문제는 목차 11. 트러블슈팅에 기술하였습니다.
 ### 9-3. Docker 볼륨 생성 및 연결
 ### 9-4. 컨테이너 삭제 전/후 데이터 비교
 ### 9-5. 바인드 마운트와 볼륨의 차이
@@ -570,4 +592,24 @@ cat app/index.html
 다시 cat app/index.html로 확인한 결과, HTML 소스 코드가 의도한 형태로 정상 저장되었음을 확인하였습니다.
 
 ### 12-2. 문제 상황 2
+```
+nano app/index.html
 
+<h1>Hello, Bind Mount!</h1>
+<p>This content was updated on the host.</p>
+```
+
+목차 9-2에서 기존 app/index.html 파일을 nano 명령어로 편집기를 이용하여 수정하였으나, 새로고침 후에도 파일이 변경되지 않는 오류가 있었습니다.
+
+가능성 있는 원인
+
+1. 브라우저 캐시에 이전 페이지의 내용이 남아 있어 수정 전 화면이 그대로 표시되었다.
+2. 컨테이너와 호스트 폴더가 제대로 연결되지 않았다.
+
+해결 방법
+
+- 먼저 원인을 1번으로 가정하고, 브라우저에 저장된 캐시를 무시하고 서버에서 웹페이지의 최신 데이터를 처음부터 다시 불러오는 Hard Refresh(Cmd + Shift + R) 기능을 사용하였습니다. 이 기능은 보통 웹사이트 업데이트가 화면에 바로 반영되지 않거나 깨진 레이아웃·오래된 스크립트가 문제를 일으킬 때 사용합니다.
+
+결과
+
+- 새로고침 후 파일 변경사항이 정상적으로 출력되었습니다. 호스트에서 수정한 파일의 내용이 Docker 컨테이너의 웹 서버에 정상적으로 반영되었습니다.
