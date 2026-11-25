@@ -577,6 +577,25 @@ origin  https://github.com/mirimgo/1.git (fetch)
 origin  https://github.com/mirimgo/1.git (push)
 ```
 - VSCode 터미널에서 git remote -v 명령어를 실행하여 GitHub 원격 저장소 연결 상태를 확인했습니다. 로컬 Git 저장소가 GitHub 원격 저장소와 정상적으로 연결되어 있음을 확인했습니다.
+### 10-5. GitHub 업로드(Push)확인
+```
+git push origin main
+```
+- git push origin main 명령어를 실행하여 로컬 저장소의 main 브랜치에 있는 커밋을 GitHub 원격 저장소에 업로드했습니다.
+```
+Enumerating objects: 11, done.
+Counting objects: 100% (11/11), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (9/9), done.
+Writing objects: 100% (10/10), 1.65 KiB | 1.65 MiB/s, done.
+Total 10 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (2/2), done.
+To https://github.com/mirimgo/1.git
+   eb29230..e0021ad  main -> main
+```
+- Writing objects: 100% : 업로드할 데이터가 정상적으로 전송되었습니다.
+- main -> main : 로컬 저장소의 main 브랜치가 GitHub 원격 저장소의 main 브랜치에 성공적으로 반영되었습니다.
+- GitHub 저장소에 접속하여 업로드된 커밋을 확인할 수 있습니다.
 ## 11. 트러블슈팅
 ### 11-1. 문제 상황 1
 
