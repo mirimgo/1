@@ -49,29 +49,29 @@ Docker version 29.9.3, build 5457199
 
 - [x] Docker 설치 및 실행 확인
 
-- [ ] Docker 이미지 다운로드 및 확인
+- [x] Docker 이미지 다운로드 및 확인
 
-- [ ] hello-world 실행
+- [x] hello-world 실행
 
-- [ ] Ubuntu 컨테이너 실행
+- [x] Ubuntu 컨테이너 실행
 
-- [ ] 컨테이너 실행/중지/종료 확인
+- [x] 컨테이너 실행/중지/종료 확인
 
-- [ ] Docker 로그 및 리소스 확인
+- [x] Docker 로그 및 리소스 확인
 
-- [ ] Dockerfile 작성 및 커스텀 이미지 빌드
+- [x] Dockerfile 작성 및 커스텀 이미지 빌드
 
-- [ ] 포트 매핑 및 웹 서버 접속 확인
+- [x] 포트 매핑 및 웹 서버 접속 확인
 
-- [ ] 바인드 마운트 변경 사항 반영 확인
+- [x] 바인드 마운트 변경 사항 반영 확인
 
-- [ ] Docker 볼륨 데이터 영속성 확인
+- [x] Docker 볼륨 데이터 영속성 확인
 
-- [ ] Git 사용자 정보 및 기본 브랜치 설정
+- [x] Git 사용자 정보 및 기본 브랜치 설정
 
-- [ ] GitHub 및 VSCode 연동
+- [x] GitHub 및 VSCode 연동
 
-- [ ] 트러블슈팅 2건 이상 정리
+- [x] 트러블슈팅 2건 이상 정리
 
 ## 4. 터미널 기본 명령어 실습
 ### 4-1. 현재 위치 및 파일 목록 확인
@@ -554,9 +554,29 @@ user.email=prmrmr10@gmail.com
 ```
 - git config --list로 설정한 정보들이 제대로 등록된 것을 확인했습니다.
 ### 10-3. GitHub 저장소 생성 및 연동
-- 기존 GitHub 저장소와 현재 codyssey-practice 폴더를 연결
+```
+cd ~/codyssey-practice
+git init
+Initialized empty Git repository in /Users/mirim/codyssey-practice/.git/
+```
+- codyssey-practice 폴더로 이동한 후, git init 명령어로 Git 저장소를 초기화했습니다.
+```
+git remote add origin https://github.com/mirimgo/1.git
+```
+- git remote add 명령어로 로컬 Git 저장소와 GitHub의 원격 저장소를 연결하고, origin이라는 별칭을 지정했습니다.
+```
+git remote -v
+origin	https://github.com/mirimgo/1.git (fetch)
+origin	https://github.com/mirimgo/1.git (push)
+```
+- git remote -v 명령어로 원격 저장소의 연결 주소와 가져오기(fetch), 업로드(push) 설정을 확인했습니다.
 ### 10-4. VSCode GitHub 로그인 및 연동
-
+```
+git remote -v
+origin  https://github.com/mirimgo/1.git (fetch)
+origin  https://github.com/mirimgo/1.git (push)
+```
+- VSCode 터미널에서 git remote -v 명령어를 실행하여 GitHub 원격 저장소 연결 상태를 확인했습니다. 로컬 Git 저장소가 GitHub 원격 저장소와 정상적으로 연결되어 있음을 확인했습니다.
 ## 11. 트러블슈팅
 ### 11-1. 문제 상황 1
 
