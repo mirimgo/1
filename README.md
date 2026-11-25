@@ -525,7 +525,8 @@ docker exec volume-container cat /usr/share/nginx/html/index.html
     <p>Powered by NGINX.</p>
 </body>
 </html>
-```- 새로 생성한 컨테이너에서 index.html 파일의 내용을 확인한 결과, 기존에 작성했던 HTML 데이터가 그대로 유지되고 있음을 확인했습니다.
+```
+- 새로 생성한 컨테이너에서 index.html 파일의 내용을 확인한 결과, 기존에 작성했던 HTML 데이터가 그대로 유지되고 있음을 확인했습니다.
 ### 9-5. 바인드 마운트와 볼륨의 차이
 
 공통점
