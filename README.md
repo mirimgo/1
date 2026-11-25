@@ -554,6 +554,7 @@ user.email=prmrmr10@gmail.com
 ```
 - git config --list로 설정한 정보들이 제대로 등록된 것을 확인했습니다.
 ### 10-3. GitHub 저장소 생성 및 연동
+- 기존 GitHub 저장소와 현재 codyssey-practice 폴더를 연결
 ### 10-4. VSCode GitHub 로그인 및 연동
 
 ## 11. 트러블슈팅
