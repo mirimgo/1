@@ -473,6 +473,7 @@ codyssey-practice/
 - 8번까지 진행했던 디렉토리 파일들의 구조입니다. codyssey-practice에서 다음 명령어를 실행하겠습니다.
 ```
 docker run -d -p 8081:80 --name bind-mount-container -v "$(pwd)/app:/usr/share/nginx/html" my-web-server
+8b78f214f133cbcd6f71a49fc742147bf6c0fe96fb79bbcf482872dd18544cd4
 ```
 - bind-mount-container 라는 이름으로 컨테이너를 생성하였습니다. 호스트 8081과 컨테이너 80번 포트를 연결하였고 백그라운드에서 컨테이너를 실행하였습니다.
 - http://localhost:8081 로 접속 결과 기존에 작성했던 html 화면이 정상적으로 출력되었습니다.(스크린샷 첨부)
@@ -483,12 +484,58 @@ nano app/index.html
 <h1>Hello, Bind Mount!</h1>
 <p>This content was updated on the host.</p>
 ```
-- 기존 호스트 html 파일을 수정하기 위해 nano 명령어로 편집기를 실행 후, 하단 텍스트 두 줄로 기존 텍스트를 교체했습니다.
-- http://localhost:8081 로 돌아가 새로고침 후, 파일이 정상적으로 변경되었음을 확인하였습니다. 해당 과정 수행 중 발생한 문제는 목차 11. 트러블슈팅에 기술하였습니다.
+- 기존 호스트 html 파일을 수정하기 위해 nano 명령어로 편집기를 실행 후, 기존 HTML 본문을 수정된 텍스트로 교체하였습니다.
+- http://localhost:8081 로 돌아가 새로고침 후, 수정된 콘텐츠가 브라우저에 정상적으로 표시됨을 확인하였습니다. (스크린샷 첨부)
+- 해당 과정 수행 중, html 콘텐츠 변경 사항이 브라우저에 반영되지 않는 문제가 발생하였으며, 해결 과정은 목차 11. 트러블슈팅에 기술하였습니다.
 ### 9-3. Docker 볼륨 생성 및 연결
+```
+docker volume create my-web-volume
+my-web-volume
+```
+- my-web-volume 이라는 이름으로 Docker 볼륨을 생성했습니다.
+```
+docker run -d -p 8082:80 --name volume-container -v my-web-volume:/usr/share/nginx/html my-web-server
+29f507d8084ceaa9cc43ba97adf4f5249144f8f65fe1e5211978de370bebc2a6
+```
+- 앞서 생성한 my-web-volume 볼륨을 volume-container라는 이름의 컨테이너에 연결하여 실행하였습니다.
+- -v my-web-volume:/usr/share/nginx/html 옵션을 사용하여 Docker 볼륨을 컨테이너 내부의 NGINX 웹 서버 디렉터리와 연결하였습니다.
+- 웹 브라우저에서 http://localhost:8082에 접속한 결과, 기존에 Docker 이미지에 포함되어 있던 HTML 콘텐츠가 정상적으로 표시되는 것을 확인하였습니다.
 ### 9-4. 컨테이너 삭제 전/후 데이터 비교
+```
+docker rm -f volume-container
+volume-container
+```
+- 9-3에서 생성했던 기존 volume-container 를 삭제했습니다.
+```
+docker run -d -p 8082:80 --name volume-container -v my-web-volume:/usr/share/nginx/html nginx
+148aea856f79a64bfeffcc437c0c9ed4f64ea561eb37fa7600d5d1515fc435c3
+```
+- 기존에 생성했던 my-web-volume 볼륨을 연결하여 새로운 volume-container 컨테이너를 생성하고 실행했습니다.
+```
+docker exec volume-container cat /usr/share/nginx/html/index.html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>My Docker Web Server</title>
+</head>
+<body>
+    <h1>Hello, Docker!</h1>
+    <p>This is my first custom web server.</p>
+    <p>Powered by NGINX.</p>
+</body>
+</html>
+```- 새로 생성한 컨테이너에서 index.html 파일의 내용을 확인한 결과, 기존에 작성했던 HTML 데이터가 그대로 유지되고 있음을 확인했습니다.
 ### 9-5. 바인드 마운트와 볼륨의 차이
 
+공통점
+
+- 컨테이너 외부에 데이터를 저장하여 컨테이너를 삭제해도 데이터가 유지되도록 한다.
+
+차이점
+
+- 바인드 마운트 (Bind Mount): 호스트 컴퓨터의 사용자가 지정한 파일이나 폴더를 컨테이너와 연결하는 방식이다.
+- 볼륨 (Volume): Docker가 직접 관리하는 별도의 저장 공간을 컨테이너와 연결하는 방식이다.
 ## 10. Git 및 GitHub 연동
 ### 10-1. Git 사용자 정보 설정 및 기본 브랜치 설정
 ### 10-3. GitHub 저장소 생성 및 연동
