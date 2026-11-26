@@ -452,7 +452,7 @@ docker run -d -p 8080:80 --name my-web-container my-web-server
 - 앞서 생성한 my-web-server 이미지를 이용하여 my-web-container라는 이름의 컨테이너를 실행하였습니다.
 - `-p 8080:80` 옵션을 사용하여 호스트의 8080번 포트와 컨테이너의 80번 포트를 연결하였습니다.
 
-![[http://localhost:8080](./screenshots/08/8-6.png)
+![[브라우저 접속 결과](./screenshots/08/8-6.png)
 
 - 웹 브라우저에서 http://localhost:8080 에 접속한 결과, 직접 작성한 HTML 콘텐츠인 Hello, Docker!, This is my first custom web server., Powered by NGINX.가 화면에 정상적으로 표시되는 것을 확인하였습니다.
 - 이를 통해 커스텀 이미지로 컨테이너를 실행하고, 직접 제작한 정적 콘텐츠가 정상적으로 적용되었음을 확인하였습니다.
