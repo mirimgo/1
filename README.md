@@ -478,7 +478,10 @@ docker run -d -p 8081:80 --name bind-mount-container -v "$(pwd)/app:/usr/share/n
 8b78f214f133cbcd6f71a49fc742147bf6c0fe96fb79bbcf482872dd18544cd4
 ```
 - bind-mount-container 라는 이름으로 컨테이너를 생성하였습니다. 호스트 8081과 컨테이너 80번 포트를 연결하였고 백그라운드에서 컨테이너를 실행하였습니다.
-- http://localhost:8081 로 접속 결과 기존에 작성했던 html 화면이 정상적으로 출력되었습니다.(스크린샷 첨부)
+
+![브라우저 접속 결과](./screenshots/09/9-1-8081.png)
+
+- http://localhost:8081 로 접속 결과 기존에 작성했던 html 화면이 정상적으로 출력되었습니다.
 ### 9-2. 호스트 파일 변경 전/후 비교
 ```
 nano app/index.html
@@ -487,7 +490,10 @@ nano app/index.html
 <p>This content was updated on the host.</p>
 ```
 - 기존 호스트 html 파일을 수정하기 위해 nano 명령어로 편집기를 실행 후, 기존 HTML 본문을 수정된 텍스트로 교체하였습니다.
-- http://localhost:8081 로 돌아가 새로고침 후, 수정된 콘텐츠가 브라우저에 정상적으로 표시됨을 확인하였습니다. (스크린샷 첨부)
+
+![브라우저 접속 결과](./screenshots/09/9-2-8081.png)
+
+- http://localhost:8081 로 돌아가 새로고침 후, 수정된 콘텐츠가 브라우저에 정상적으로 표시됨을 확인하였습니다.
 - 해당 과정 수행 중, html 콘텐츠 변경 사항이 브라우저에 반영되지 않는 문제가 발생하였으며, 해결 과정은 목차 11. 트러블슈팅에 기술하였습니다.
 ### 9-3. Docker 볼륨 생성 및 연결
 ```
