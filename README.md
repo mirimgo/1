@@ -412,7 +412,7 @@ cat > app/index.html <<'EOF'
 EOF
 ```
 - index.html 안에 NGINX 웹 서버에서 표시할 HTML 소스코드를 입력했습니다.
-- 기존에 open -e app/index.html 명령어로 텍스트 편집기를 열어 해당 내용을 입력할 계획이었으나 문제가 발생했습니다. 해당 문제는 목차 12 트러블슈팅에 기술하였습니다.
+- 기존에 open -e app/index.html 명령어로 텍스트 편집기를 열어 해당 내용을 입력할 계획이었으나 문제가 발생했습니다. 해당 문제는 목차 11 트러블슈팅에 기술하였습니다.
 ```
 touch Dockerfile
 open -e Dockerfile
@@ -689,7 +689,7 @@ cat app/index.html
 
 다시 cat app/index.html로 확인한 결과, HTML 소스 코드가 의도한 형태로 정상 저장되었음을 확인하였습니다.
 
-### 12-2. 문제 상황 2
+### 11-2. 문제 상황 2
 ```
 nano app/index.html
 
